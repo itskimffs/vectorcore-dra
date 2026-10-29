@@ -1,3 +1,7 @@
+// Modified by itskimffs (2026-10), see NOTICE: Host-IP-Address follows DRA_HOST_IP.
+// This file is part of vectorcore-dra, licensed under the Apache License,
+// Version 2.0 (see LICENSE).
+
 package api
 
 import (

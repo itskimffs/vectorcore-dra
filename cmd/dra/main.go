@@ -1,3 +1,7 @@
+// Modified by itskimffs (2026-10), see NOTICE: DRA_HOST_IP overrides the Host-IP-Address used in CER/CEA (getLocalIP).
+// This file is part of vectorcore-dra, licensed under the Apache License,
+// Version 2.0 (see LICENSE).
+
 package main
 
 import (
