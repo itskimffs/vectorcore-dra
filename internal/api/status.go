@@ -4,6 +4,7 @@ import (
 	"context"
 	"net"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/danielgtaylor/huma/v2"
@@ -208,6 +209,11 @@ func metricValue(t dto.MetricType, m *dto.Metric) float64 {
 
 // getLocalIPForAPI returns the local IP for use in API-triggered peer syncs.
 func getLocalIPForAPI() net.IP {
+	if v := os.Getenv("DRA_HOST_IP"); v != "" {
+		if ip := net.ParseIP(v).To4(); ip != nil {
+			return ip
+		}
+	}
 	ifaces, err := net.Interfaces()
 	if err != nil {
 		return net.ParseIP("127.0.0.1")
