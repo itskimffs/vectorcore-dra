@@ -1,3 +1,7 @@
+// Modified by itskimffs (2026-10), see NOTICE: DRA_HOST_IP overrides the Host-IP-Address used in CER/CEA (getLocalIP).
+// This file is part of vectorcore-dra, licensed under the Apache License,
+// Version 2.0 (see LICENSE).
+
 package main
 
 import (
@@ -322,6 +326,11 @@ func configIMSIToRouterIMSI(cfgRoutes []config.IMSIRoute) []router.IMSIRoute {
 
 // getLocalIP returns the primary non-loopback IPv4 address of this host.
 func getLocalIP() net.IP {
+	if v := os.Getenv("DRA_HOST_IP"); v != "" {
+		if ip := net.ParseIP(v).To4(); ip != nil {
+			return ip
+		}
+	}
 	ifaces, err := net.Interfaces()
 	if err != nil {
 		return net.ParseIP("127.0.0.1")
